@@ -11,7 +11,7 @@ class NewsController extends Controller
 {
     public function index()
     {
-        return $this->render('index');
+        return $this->render('news.index');
     }
 
     public function category($id)
@@ -21,6 +21,6 @@ class NewsController extends Controller
 
     public function article($id)
     {
-        return $this->render('article', ['id' => $id]);
+        return $this->render('news.article', ['id' => $id]);
     }
 }
