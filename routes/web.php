@@ -46,3 +46,18 @@ $app->get('welcome[/{username}]', function ($username = null) {
 $app->get('say/{text:\w+}', function ($text) {
     return $text;
 });
+
+/*
+| http://lumen-app.dev/blog/category
+| http://lumen-app.dev/blog/article
+*/
+$app->group(['prefix' => 'blog'], function () use ($app) {
+
+    $app->get('category/{id:\d+}', function ($id) {
+        return 'Blog category #' . $id;
+    });
+
+    $app->get('article/{id:\d+}', function ($id) {
+        return 'Blog article #' . $id;
+    });
+});
