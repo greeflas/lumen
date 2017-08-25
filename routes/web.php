@@ -32,3 +32,10 @@ $app->get('hello', function () {
 $app->get('say-hello/{username}', function ($username) {
     return 'Hello, ' . ucfirst($username);
 });
+
+/*
+| http://lumen-app.dev/welcome
+*/
+$app->get('welcome[/{username}]', function ($username = null) {
+    return 'Welcome, ' . ($username == null ? 'Guest' : ucfirst($username));
+});
