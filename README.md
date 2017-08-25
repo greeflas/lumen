@@ -26,3 +26,20 @@ Next step you should to install composer packages
 ```
 cd project-name && composer install
 ```
+
+Migrations
+----------
+Create migration
+```
+./artisan make:migration create_table_name
+```
+
+Apply migrations
+```
+./artisan migrate
+```
+
+Re-apply migrations
+```
+./artisan migrate:refresh
+```
