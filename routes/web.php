@@ -11,10 +11,24 @@
 |
 */
 
+
+/*
+| http://lumen-app.dev/
+*/
 $app->get('/', function () use ($app) {
     return $app->version();
 });
 
+/*
+| http://lumen-app.dev/hello
+*/
 $app->get('hello', function () {
     return 'Hello, World!';
+});
+
+/*
+| http://lumen-app.dev/say-hello/greeflas
+*/
+$app->get('say-hello/{username}', function ($username) {
+    return 'Hello, ' . ucfirst($username);
 });
