@@ -13,4 +13,9 @@ class NewsController extends Controller
     {
         return 'News category #' . $id;
     }
+
+    public function article($id)
+    {
+        return $this->render('article', ['id' => $id]);
+    }
 }
