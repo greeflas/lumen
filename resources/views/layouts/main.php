@@ -1,5 +1,7 @@
 <?php
 /**
+ * Main layout file for views.
+ *
  * @var string $content
  *
  * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>

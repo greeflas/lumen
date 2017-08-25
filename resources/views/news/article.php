@@ -1,5 +1,8 @@
 <?php
 /**
+ * View file for news controller.
+ * @see \App\Http\Controllers\NewsController
+ *
  * @var int $id
  *
  * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
