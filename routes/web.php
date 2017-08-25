@@ -13,6 +13,7 @@
 
 
 /*
+| Basic route
 | http://lumen-app.dev/
 */
 $app->get('/', function () use ($app) {
@@ -20,6 +21,7 @@ $app->get('/', function () use ($app) {
 });
 
 /*
+| Basic route
 | http://lumen-app.dev/hello
 */
 $app->get('hello', function () {
@@ -27,6 +29,7 @@ $app->get('hello', function () {
 });
 
 /*
+| Route with param
 | http://lumen-app.dev/say-hello/greeflas
 */
 $app->get('say-hello/{username}', function ($username) {
@@ -34,22 +37,26 @@ $app->get('say-hello/{username}', function ($username) {
 });
 
 /*
+| Route with optional param
 | http://lumen-app.dev/welcome
+| http://lumen-app.dev/welcome/greeflas
 */
 $app->get('welcome[/{username}]', function ($username = null) {
     return 'Welcome, ' . ($username == null ? 'Guest' : ucfirst($username));
 });
 
 /*
-| http://lumen-app.dev/say
+| Route with regexp param
+| http://lumen-app.dev/say/some-text
 */
 $app->get('say/{text:\w+}', function ($text) {
     return $text;
 });
 
 /*
-| http://lumen-app.dev/blog/category
-| http://lumen-app.dev/blog/article
+| Routes group
+| http://lumen-app.dev/blog/category/1
+| http://lumen-app.dev/blog/article/2
 */
 $app->group(['prefix' => 'blog'], function () use ($app) {
 
