@@ -68,3 +68,12 @@ $app->group(['prefix' => 'blog'], function () use ($app) {
         return 'Blog article #' . $id;
     });
 });
+
+/*
+| Route for controller
+| http://lumen-app.dev/news/category/1
+*/
+$app->group(['prefix' => 'news'], function () use ($app) {
+
+    $app->get('category/{id:\d+}', 'NewsController@category');
+});
