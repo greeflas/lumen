@@ -75,7 +75,9 @@ $app->group(['prefix' => 'blog'], function () use ($app) {
 */
 $app->group(['prefix' => 'news'], function () use ($app) {
 
+    $app->get('index', ['uses' => 'NewsController@index', 'as' => 'news']);
+
     $app->get('category/{id:\d+}', 'NewsController@category');
 
-    $app->get('article/{id:\d+}', 'NewsController@article');
+    $app->get('article/{id:\d+}', ['uses' => 'NewsController@article', 'as' => 'article']);
 });

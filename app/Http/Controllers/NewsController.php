@@ -9,6 +9,11 @@ namespace App\Http\Controllers;
  */
 class NewsController extends Controller
 {
+    public function index()
+    {
+        return $this->render('index');
+    }
+
     public function category($id)
     {
         return 'News category #' . $id;
