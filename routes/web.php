@@ -72,6 +72,9 @@ $app->group(['prefix' => 'blog'], function () use ($app) {
 /*
 | Route for controller
 | http://lumen-app.dev/news/category/1
+| http://lumen-app.dev/news/category/1/json
+| http://lumen-app.dev/news/article/2
+| http://lumen-app.dev/news/article/2/json
 */
 $app->group(['prefix' => 'news'], function () use ($app) {
 
@@ -79,5 +82,13 @@ $app->group(['prefix' => 'news'], function () use ($app) {
 
     $app->get('category/{id:\d+}', 'NewsController@category');
 
+    $app->get('category/{id:\d+}/json', function ($id) {
+        return \App\Models\Entities\NewsCategory::findOrFail($id);
+    });
+
     $app->get('article/{id:\d+}', ['uses' => 'NewsController@article', 'as' => 'article']);
+
+    $app->get('article/{id:\d+}/json', function ($id) {
+        return \App\Models\Entities\NewsArticle::findOrFail($id);
+    });
 });
