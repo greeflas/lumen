@@ -80,7 +80,7 @@ $app->group(['prefix' => 'news'], function () use ($app) {
 
     $app->get('index', ['uses' => 'NewsController@index', 'as' => 'news']);
 
-    $app->get('category/{id:\d+}', 'NewsController@category');
+    $app->get('category/{id:\d+}', ['uses' => 'NewsController@category', 'as' => 'category']);
 
     $app->get('category/{id:\d+}/json', function ($id) {
         return \App\Models\Entities\NewsCategory::findOrFail($id);
@@ -91,4 +91,10 @@ $app->group(['prefix' => 'news'], function () use ($app) {
     $app->get('article/{id:\d+}/json', function ($id) {
         return \App\Models\Entities\NewsArticle::findOrFail($id);
     });
+
+    $app->post('create-category', ['uses' => 'NewsController@createCategory', 'as' => 'create-category']);
+
+    $app->post('create-article', ['uses' => 'NewsController@createArticle', 'as' => 'create-article']);
+
+    $app->get('create', 'NewsController@create');
 });
