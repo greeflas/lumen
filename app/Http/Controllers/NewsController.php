@@ -54,10 +54,15 @@ class NewsController extends Controller
      * Creates news category.
      *
      * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\RedirectResponse|string
      */
     public function createCategory(Request $request)
     {
+        $this->validate($request, [
+            'label' => 'required|string',
+            'description' => 'required|string',
+        ]);
+
         $category = new NewsCategory();
         $category->label = $request->input('label');
         $category->description = $request->input('description');
@@ -70,10 +75,16 @@ class NewsController extends Controller
      * Creates news article.
      *
      * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\RedirectResponse|string
      */
     public function createArticle(Request $request)
     {
+        $this->validate($request, [
+            'category_id' => 'required|integer',
+            'title' => 'required|string',
+            'content' => 'required|string',
+        ]);
+
         $article = new NewsArticle();
         $article->category_id = $request->input('categoryId');
         $article->title = $request->input('title');
