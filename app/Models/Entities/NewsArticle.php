@@ -14,6 +14,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $created_at
  * @property int $updated_at
  *
+ * @property NewsCategory $category
+ *
  * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  */
 class NewsArticle extends Model
@@ -28,4 +30,12 @@ class NewsArticle extends Model
     protected $hidden = [
         self::UPDATED_AT,
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function category()
+    {
+        return $this->hasOne(NewsCategory::class, 'id', 'category_id');
+    }
 }

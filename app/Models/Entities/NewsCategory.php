@@ -13,6 +13,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $created_at
  * @property int $updated_at
  *
+ * @property NewsArticle[] $articles
+ *
  * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  */
 class NewsCategory extends Model
@@ -28,4 +30,12 @@ class NewsCategory extends Model
         self::CREATED_AT,
         self::UPDATED_AT,
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function articles()
+    {
+        return $this->hasMany(NewsArticle::class, 'category_id', 'id');
+    }
 }

@@ -20,7 +20,8 @@ class NewsController extends Controller
      */
     public function index()
     {
-        return $this->render('news.index');
+        $categories = NewsCategory::with('articles')->get();
+        return $this->render('news.index', compact('categories'));
     }
 
     /**
@@ -31,7 +32,9 @@ class NewsController extends Controller
      */
     public function category($id)
     {
-        return 'News category #' . $id;
+        $category = NewsCategory::findOrFail($id);
+        $category->load('articles'); // lazy load of relation
+        return $this->render('news.category', compact('category'));
     }
 
     /**
@@ -42,7 +45,9 @@ class NewsController extends Controller
      */
     public function article($id)
     {
-        return $this->render('news.article', ['id' => $id]);
+        $article = NewsArticle::findOrFail($id);
+        $article->load('category'); // lazy load of relation
+        return $this->render('news.article', compact('article'));
     }
 
     /**
@@ -88,9 +93,6 @@ class NewsController extends Controller
     public function create()
     {
         $categories = NewsCategory::all(['id', 'label']);
-
-        return $this->render('news.create', [
-            'categories' => $categories,
-        ]);
+        return $this->render('news.create', compact('categories'));
     }
 }

@@ -3,10 +3,22 @@
  * View file for news controller.
  * @see \App\Http\Controllers\NewsController
  *
- * @var int $id
+ * @var \App\Models\Entities\NewsArticle $article
  *
  * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  */
 ?>
-<h1>News article #<?= $id ?></h1>
-<a href="<?= route('news') ?>">back</a>
+<article>
+    <h1>
+        <?= $article->title ?>
+    </h1>
+    <time>
+        <?= $article->created_at ?>
+    </time>
+    <p>
+        <?= $article->content ?>
+    </p>
+    <a href="<?= route('category', ['id' => $article->category_id]) ?>">
+        Back to <i><?= $article->category->label ?></i>
+    </a>
+</article>
