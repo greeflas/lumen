@@ -70,7 +70,7 @@ $app->group(['prefix' => 'blog'], function () use ($app) {
 });
 
 /*
-| Route for controller
+| Route for news controller
 | http://lumen-app.dev/news/category/1
 | http://lumen-app.dev/news/category/1/json
 | http://lumen-app.dev/news/article/2
@@ -97,4 +97,26 @@ $app->group(['prefix' => 'news'], function () use ($app) {
     $app->post('create-article', ['uses' => 'NewsController@createArticle', 'as' => 'create-article']);
 
     $app->get('create', 'NewsController@create');
+});
+
+/*
+| Route for secret controller
+| http://lumen-app.dev/secret/index
+| http://lumen-app.dev/secret/details
+| http://lumen-app.dev/secret/not-allowed
+*/
+$app->group(['prefix' => 'secret'], function () use ($app) {
+
+    $app->get('index', 'SecretController@index');
+
+    $app->get('details', [
+        'uses' => 'SecretController@details',
+        'as' => 'secret',
+        'middleware' => 'childrenFilter',
+    ]);
+
+    $app->get('not-allowed', [
+        'uses' => 'SecretController@notAllowed',
+        'as' => 'secret-not-allowed',
+    ]);
 });
